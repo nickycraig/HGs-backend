@@ -1,1 +1,1 @@
-# HGs-backend
+# Hungry Guys Recipe File backend repo
