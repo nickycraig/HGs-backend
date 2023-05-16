@@ -10,6 +10,7 @@ const morgan = require('morgan');
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+const{Recipes} = require('./models')
 
 app.get('/', (req, res) => {
     res.send('Greetings earthlings');

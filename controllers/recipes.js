@@ -62,11 +62,32 @@ const seededData = [
             }
 ]
 
-router.get('', async (req, res, next) => {
+router.get('/recipes', async (req, res, next) => {
     try {
         const myRecipes = await recipes.find({});
         console.log(recipes);
         res.json(myRecipes);
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
+
+router.get('/recipes/seed/', async (req, res, next) => {
+    try{
+        await recipes.deleteMany({});
+        await recipes.insertMany(seededData);
+        res.redirect('/recipes');
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
+
+router.get('/recipes/:id', async (req, res, next) => {
+    try {
+        const myRecipe = await recipes.findById(req.params.id);
+        res.json(myRecipe);
     } catch(err) {
         console.log(err);
         next();
