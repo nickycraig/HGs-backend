@@ -94,5 +94,37 @@ router.get('/recipes/:id', async (req, res, next) => {
     }
 })
 
+router.post('/recipes', async (req, res, next) => {
+    try {
+        const newRecipe = await recipes.create(req.body);
+        console.log(newRecipe);
+        res.redirect('/recipes');
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
+
+router.put('/recipes/:id', async (req, res, next) => {
+    try {
+        const updatedRecipe = await recipes.findByIdAndUpdate(req.params.id, req.body);
+        console.log(updatedRecipe);
+        res.redirect(`/recipes/${req.params.id}`);
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
+
+router.delete('/recipes/:id', async (req, res, next) => {
+    try{
+        const deletedRecipe = await recipes.findByIdAndDelete(req.params.id);
+        console.log(deletedRecipe);
+        res.redirect('/recipes');
+    } catch(err) {
+        console.log(err);
+        next();
+    }
+})
 
 module.exports = router;
