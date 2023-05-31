@@ -13,10 +13,10 @@ const seededData = [
             }, {
                 name: "Kale-Radicchio Salad with Farro",
                 type: "salad",
-                image: "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2Fimage%2F2018%2F03%2Fmain%2F1802w-kale-radicchio-salad-run-fast-eat-slow.jpg%3Fitok%3DGq3ClEJU&w=800&c=sc&poi=face&q=60", 
+                image: "https://blog.fitbit.com/wp-content/uploads/2016/09/kale-radicchio-salad_Blog.jpg", 
                 cuisine: ["healthy", "vegetarian"],
                 comments: "The dressing is simple and delicious. Salad keeps pretty well in the fridge for a few days.",
-                recipeLink: "https://www.cookinglight.com/recipes/kale-radicchio-salad-run-fast-eat-slow"
+                recipeLink: "https://blog.fitbit.com/a-kale-farro-salad-that-goes-the-distance/"
             }, {
                 name: "Spicy Pork Shoulder Congee",
                 type: "entree",
@@ -109,7 +109,7 @@ router.put('/recipes/:id', async (req, res, next) => {
     try {
         const updatedRecipe = await recipes.findByIdAndUpdate(req.params.id, req.body);
         console.log(updatedRecipe);
-        res.redirect(`/recipes/${req.params.id}`);
+        res.json(`/recipes/${req.params.id}`);
     } catch(err) {
         console.log(err);
         next();
